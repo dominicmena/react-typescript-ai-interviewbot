@@ -38,7 +38,10 @@ const AuthForm = () => {
       }
 
   return (
-    <div>    <Form {...form}>
+    <div className="card-border lg:min-w-[566px]">  
+    
+    
+    <Form {...form}>
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
       <FormField
         control={form.control}
