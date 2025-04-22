@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import Link from "next/link";
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
@@ -36,7 +37,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
     console.log(values);
   }
 
-  const isSignIn = type === 'sign-in'
+  const isSignIn = type === "sign-in";
 
   return (
     <div className="card-border lg:min-w-[566px]">
@@ -48,11 +49,33 @@ const AuthForm = ({ type }: { type: FormType }) => {
         <h3>Practice Interviews with AI</h3>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6 mt-4 form">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-full space-y-6 mt-4 form"
+          >
             {!isSignIn && <p>Name</p>}
-            <Button type="submit">Submit</Button>
+            <p>Email</p>
+            <p>Password</p>
+            {/* <Button className="btn" type="submit">Submit</Button> */}
+            <Button type="submit">
+              {isSignIn ? "Sign In" : "Create an Account"}
+            </Button>
           </form>
         </Form>
+
+        <p className="text-center">
+          {isSignIn ? "No account yet?" : "Have an account already?"}
+
+          <Link
+            href={!isSignIn ? "/sign-in" : "/sign-up"}
+            className="font-bold text-user-primary ml-1"
+          >
+
+            {!isSignIn ? "Sign in" : "Sign up"}
+            
+          </Link>
+
+        </p>
       </div>
     </div>
   );
